@@ -5,7 +5,7 @@
     <b-container>
       <b-row>
         <b-col sm="6" offset="3">
-          <QuestionBox />
+          <QuestionBox :question="questions[index]" />
         </b-col>
       </b-row>
     </b-container>
@@ -23,16 +23,22 @@ export default {
     QuestionBox,
   },
   data() {
-    return {};
+    return {
+      questions: [],
+      index: 0,
+    };
   },
   mounted: function () {
     fetch("https://opentdb.com/api.php?amount=10&type=multiple", {
       method: "get",
     })
       .then((response) => {
+        console.log(response.json())
         return response.json();
       })
-      .then((jsonData) => {});
+      .then((jsonData) => {
+        this.questions = jsonData.results
+      });
   },
 };
 </script>
