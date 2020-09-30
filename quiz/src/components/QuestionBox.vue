@@ -44,10 +44,19 @@ export default {
     },
   },
   watch: {
-    currentQuestion() {
-      this.selectedIndex = null;
-      this.shuffleAnswers();
-    },
+
+currentQuestion:{
+  immediate:true,
+  handler(){
+    this.selectedIndex = null
+    this.shuffleAnswers()
+  }
+}
+
+// currentQuestion() {
+    //   this.selectedIndex = null;
+    //   this.shuffleAnswers();
+    // },
   },
   methods: {
     selectAnswer(index) {
