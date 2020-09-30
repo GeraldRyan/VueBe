@@ -5,15 +5,19 @@
 
       <hr class="my-4" />
       <b-list-group>
-        <b-list-group-item v-for="(answer, index) in answers" :key="index"
-        @click="selectAnswer(index)">
+        <b-list-group-item
+          v-for="(answer, index) in answers"
+          :key="index"
+          @click="selectAnswer(index)"
+          :class="[selectedIndex === index ? 'selected' : '']"
+        >
           {{ answer }}
         </b-list-group-item>
       </b-list-group>
 
       <b-button variant="primary" href="#">Submit</b-button>
-      <b-button @click="next" variant="success" href="#"
-        >Next Question</b-button
+      <b-button @click="next" variant="success" href="#">
+        Next Question</b-button
       >
     </b-jumbotron>
   </div>
@@ -25,6 +29,11 @@ export default {
     currentQuestion: Object,
     next: Function,
   },
+  data() {
+    return {
+      selectedIndex: null,
+    };
+  },
   computed: {
     answers() {
       let answers = [...this.currentQuestion.incorrect_answers];
@@ -33,18 +42,32 @@ export default {
     },
   },
   methods: {
-    selectAnswer(index){
-      console.log(index)
-    }
-  }
+    selectAnswer(index) {
+      this.selectedIndex = index;
+    },
+  },
 };
 </script>
 
 <style scoped>
-.list-group{
+.list-group {
   margin-bottom: 15px;
 }
-.btn{
+.list-group-item:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+.btn {
   margin: 0 5px;
+}
+
+.selected {
+  background-color: lightblue;
+}
+.correct {
+  background-color: green;
+}
+.incorrect {
+  background-color: red;
 }
 </style>
