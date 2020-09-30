@@ -1,5 +1,24 @@
 <template>
   <div>
-    Pet
+    {{ pet().name }}
+
   </div>
 </template>
+
+<script>
+import { mapState } from "vuex";
+export default {
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState(["dogs", "cats"]),
+  },
+  methods: {
+    pet() {
+      const animal = this[this.$route.params.species][this.$route.params.id];
+      return animal
+    },
+  },
+};
+</script>
