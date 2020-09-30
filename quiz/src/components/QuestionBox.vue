@@ -15,13 +15,13 @@
         </b-list-group-item>
       </b-list-group>
 
-      <b-button variant="primary" 
-      @click="submitAnswer"
-      :disabled="selectedIndex ===null"
-      >Submit</b-button>
-      <b-button @click="next" variant="success" href="#">
-        Next Question</b-button
+      <b-button
+        variant="primary"
+        @click="submitAnswer"
+        :disabled="selectedIndex === null || bAnswered"
+        >Submit</b-button
       >
+      <b-button @click="next" variant="success"> Next Question</b-button>
     </b-jumbotron>
   </div>
 </template>
@@ -37,7 +37,9 @@ export default {
   data() {
     return {
       selectedIndex: null,
+      correctIndex:null,
       shuffledAnswers: [],
+      bAnswered: false,
     };
   },
   computed: {
@@ -54,6 +56,7 @@ currentQuestion:{
   handler(){
     this.selectedIndex = null
     this.shuffleAnswers()
+    this.bAnswered = false
   }
 }
 
@@ -71,8 +74,8 @@ currentQuestion:{
       if (this.selectedIndex === this.correctIndex){
         isCorrect = true
       }
-
       this.increment(isCorrect)
+      this.bAnswered = true;
     },
     shuffleAnswers() {
       let answers = [
