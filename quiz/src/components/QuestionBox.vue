@@ -9,7 +9,9 @@
           v-for="(answer, index) in answers"
           :key="index"
           @click="selectAnswer(index)"
-          :class="[selectedIndex === index ? 'selected' : '']"
+          :class="[!bAnswered && selectedIndex === index ? 'selected' : 
+          bAnswered && correctIndex === index ? 'correct' : 
+          bAnswered && selectedIndex === index && correctIndex !== index ? 'incorrect' : '']"
         >
           {{ answer }}
         </b-list-group-item>
