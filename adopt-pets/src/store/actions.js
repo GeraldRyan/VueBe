@@ -1,5 +1,5 @@
 export default {
-  addPet: (context, pet) =>{
-    context.commit("appendPet", pet)
+  addPet: (context, {pet, payload}) =>{
+    context.commit("appendPet", payload)
   }
 }
