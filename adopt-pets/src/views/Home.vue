@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>Adopt a New Best Friend</h1>
-    <button class="btn btn-primary">Add New Pet</button>
+    <button @click="togglePetForm" class="btn btn-primary">Add New Pet</button>
 
     <b-form @submit="handleSubmit" v-if="showPetForm">
 
